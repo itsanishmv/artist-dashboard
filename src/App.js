@@ -1,11 +1,11 @@
 import "./App.css";
-import Login from "./components/Login/Login";
-import Dashboard from "./components/Dashboard/Dashboard.Main";
+import LoginPage from "./pages/LoginPage";
+import DashboardPage from "./pages/DashboardPage";
 function App() {
   return (
     <div className=" text-Heading font-display">
-      <Login />
-      <Dashboard />
+      <LoginPage />
+      {/* <DashboardPage /> */}
     </div>
   );
 }
