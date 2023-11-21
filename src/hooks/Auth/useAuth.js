@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useContext } from "react";
-import { Auth } from "../../components/Auth/AuthContext";
 import { Authenticate } from "../../components/Login/api/LoginQuery";
 function useAuth() {
   const [errorState, setErrorState] = useState("");
@@ -16,9 +14,9 @@ function useAuth() {
     }
   }, [isLoggedIn]);
 
-  async function handleLogin() {
+  async function handleLogin(username, password) {
     try {
-      const userData = await Authenticate("DJ@4", "Dhunjam@2023");
+      const userData = await Authenticate(username, password);
       window.localStorage.setItem("user_token", userData.data.token);
       setIsLoggedIn(true);
       setErrorState("");

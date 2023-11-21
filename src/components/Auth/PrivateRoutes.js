@@ -1,6 +1,5 @@
 import React, { useContext, useEffect } from "react";
 import { Outlet, Navigate } from "react-router-dom";
-import { Auth } from "./AuthContext";
 import useAuth from "../../hooks/Auth/useAuth";
 function PrivateRoutes() {
   const { isLoggedIn } = useAuth();

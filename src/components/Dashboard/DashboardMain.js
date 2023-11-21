@@ -9,7 +9,8 @@ function Dashboard() {
     admin &&
     Object.keys(admin?.amount)
       .slice(1)
-      ?.every((value, index) => admin?.amount[value] > thresholdValues[index]);
+      ?.every((value, index) => customAmount > thresholdValues[index]);
+
   function handleRadio(event) {
     if (event.target.id === "no") {
       setDisable(true);
@@ -17,6 +18,7 @@ function Dashboard() {
       setDisable(false);
     }
   }
+  console.log("isHigher ", isHigher);
 
   return (
     <div className="w-[600px] text-white ">
@@ -53,7 +55,11 @@ function Dashboard() {
         </div>
         <div className="flex items-center justify-between w-[600px]">
           <h2 className="w-1/2">Custom song request amount-</h2>
-          <div className=" w-1/2 flex justify-center border border-white rounded-xl p-1">
+          <div
+            className={`${
+              disable ? "bg-greyed" : "bg-dark"
+            } w-1/2 flex justify-center border border-white rounded-xl p-1`}
+          >
             <input
               onChange={(e) => setCustomAmount(e.target.value)}
               className={`${
@@ -86,9 +92,9 @@ function Dashboard() {
 
       <button
         onClick={() => updatePrice()}
-        disabled={disable || !isHigher}
+        disabled={disable || !isHigher || customAmount < 99}
         className={`${
-          disable ? "bg-greyed" : "bg-purple"
+          disable || customAmount < 99 || !isHigher ? "bg-greyed" : "bg-purple"
         }  text-small rounded-xl mt-6 p-4 font-semibold w-full `}
       >
         Save
