@@ -2,3 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+body[type = number] {
+    text-decoration: none;
+}
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
