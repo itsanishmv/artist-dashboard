@@ -1,11 +1,20 @@
 import "./App.css";
 import LoginPage from "./pages/LoginPage";
 import DashboardPage from "./pages/DashboardPage";
+import { Routes, Route } from "react-router-dom";
+import PrivateRoutes from "./components/Auth/PrivateRoutes";
+import AuthContext from "./components/Auth/AuthContext";
 function App() {
   return (
     <div className=" text-Heading font-display">
-      <LoginPage />
-      {/* <DashboardPage /> */}
+      {/* <AuthContext> */}
+      <Routes>
+        <Route element={<PrivateRoutes />}>
+          <Route path="/dashboard" element={<DashboardPage />} exact />
+        </Route>
+        <Route path="/" element={<LoginPage />} />
+      </Routes>
+      {/* </AuthContext> */}
     </div>
   );
 }

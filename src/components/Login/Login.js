@@ -1,6 +1,8 @@
-import React from "react";
-
+import React, { useState } from "react";
+import useAuth from "../../hooks/Auth/useAuth";
 function Login() {
+  const [formdata, setFormData] = useState();
+  const { handleLogin, errorState } = useAuth();
   return (
     <div className="text-white w-[600px]">
       <h1 className="text-Heading flex justify-center font-semibold">
@@ -17,7 +19,15 @@ function Login() {
           type="password"
           placeholder="Password"
         />
-        <button className="bg-purple text-small rounded-xl mt-6 p-4 font-semibold ">
+        {errorState && (
+          <span className="text-small text-[red] flex justify-center">
+            {errorState}
+          </span>
+        )}
+        <button
+          onClick={() => handleLogin()}
+          className="bg-purple text-small rounded-xl mt-6 p-4 font-semibold "
+        >
           Sign-in
         </button>
         <h5 className="text-small flex justify-center font-thin">
