@@ -3,7 +3,9 @@ import Graph from "./Graph";
 import useAdmin from "../../hooks/Dashboard/useAdmin";
 function Dashboard() {
   const [disable, setDisable] = useState(false);
+
   const { setCustomAmount, customAmount, admin, updatePrice } = useAdmin();
+
   const thresholdValues = [79, 59, 39, 19];
   const isHigher =
     admin &&
@@ -18,7 +20,6 @@ function Dashboard() {
       setDisable(false);
     }
   }
-  console.log("isHigher ", isHigher);
 
   return (
     <div className="w-[600px] text-white ">
@@ -42,14 +43,15 @@ function Dashboard() {
                 name="group1"
                 type="radio"
               />
-              <span>Yes</span>
+              <span className="-ml-2">Yes</span>
               <input
+                className="text-Header"
                 checked={disable || admin?.charge_customers !== true}
                 id="no"
                 name="group1"
                 type="radio"
               />
-              <span>No</span>
+              <span className="-ml-2">No</span>
             </label>
           </div>
         </div>
@@ -81,21 +83,21 @@ function Dashboard() {
                 .slice(1)
                 .sort((a, b) => a - b)
                 .map((amount) => (
-                  <div className="border border-white px-4 py-1  rounded-xl text-small">
-                    <h6 className="w-full">{admin?.amount[amount]}</h6>
+                  <div className="border border-white px-4 py-1 w-16 rounded-xl text-small">
+                    {admin?.amount[amount]}
                   </div>
                 ))}
           </div>
         </div>
       </div>
-      {!disable && <Graph />}
+      {admin?.charge_customers && !disable && <Graph admin={admin} />}
 
       <button
         onClick={() => updatePrice()}
         disabled={disable || !isHigher || customAmount < 99}
         className={`${
           disable || customAmount < 99 || !isHigher ? "bg-greyed" : "bg-purple"
-        }  text-small rounded-xl mt-6 p-4 font-semibold w-full `}
+        }  text-small rounded-xl mt-6 p-4 font-semibold w-full hover:border-pink hover:border border border-purple `}
       >
         Save
       </button>

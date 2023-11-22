@@ -16,7 +16,7 @@ function useAdmin() {
   async function updatePrice() {
     const response = await updateCustomPrice(customAmount);
     if (response?.data) {
-      setIsRefetch(true);
+      setIsRefetch(!isRefetch);
     }
   }
   return { setCustomAmount, customAmount, admin, updatePrice };

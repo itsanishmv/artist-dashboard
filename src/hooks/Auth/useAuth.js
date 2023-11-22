@@ -6,7 +6,6 @@ function useAuth() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const navigate = useNavigate();
 
-  console.log(isLoggedIn);
   useEffect(() => {
     if (window.localStorage.getItem("user_token")) {
       setIsLoggedIn(true);
